@@ -1,0 +1,2 @@
+# rookie
+getting started
