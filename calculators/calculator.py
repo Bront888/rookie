@@ -27,7 +27,7 @@ def calculate():
             print(f"Result: {final}")
 
         end_session = input("Do you wish to continue? (yes/no)\n")
-        if end_session != "no" "n" "No":
+        if end_session in ["no", "n", "No"]:
             running = False
             print("See you next time :)")
     return final
