@@ -24,11 +24,13 @@ def calculate():
         else:
             print("invalid operator")
 
+        #print result if calculation succeeded
         if final is not None:
             print(f"Result: {final}")
 
-        end_session = input("Do you wish to continue? (yes/no)\n")
-        if end_session in ["no", "n", "No"]:
+        #ask to continue
+        end_session = input("Do you wish to continue? (yes/no)\n").strip().lower()
+        if end_session in ["no", "n"]:
             running = False
             print("See you next time :)")
     return final
