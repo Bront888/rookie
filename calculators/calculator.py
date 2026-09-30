@@ -33,6 +33,7 @@ def calculate():
         if end_session in ["no", "n"]:
             running = False
             print("See you next time :)")
+    #return the very last calculation
     return final
 
 calculate()
