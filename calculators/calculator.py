@@ -31,4 +31,5 @@ def calculate():
             running = False
             print("See you next time :)")
     return final
+
 calculate()
