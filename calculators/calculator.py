@@ -2,13 +2,14 @@ def calculate():
     running = True
 
     while running:
+        #safely collect user inputs
         firstnum = int(input())
         operator = input("")
         secondnum = int(input())
         final = None
 
 
-
+        #perform operations including zero-divide safety check
         if operator == "+":
             final = firstnum + secondnum
         elif operator == "-":
