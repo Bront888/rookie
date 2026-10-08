@@ -28,7 +28,6 @@ while running:
                 print("--- ADD NEW RESOURCE ---")
                 resource_Id = input("Enter resource ID: ")
                 resource_name = input("Enter resource name: ")
-                resource_category = input("Enter category: ")
                 resource_quantity = int(input("Enter Total Units: "))
                 StorageList.append({"id": resource_Id, "name": resource_name, "quantity": int(resource_quantity)})
                 print(f"Added {resource_Id} - {resource_name}, {resource_quantity} to the inventory.")
