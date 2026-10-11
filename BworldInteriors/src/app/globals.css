@@ -254,7 +254,9 @@ h1.display { font-size: clamp(2rem, 4.5vw, 3rem); }
 .swatch { width: 34px; height: 34px; border-radius: 50%; cursor: pointer; border: 3px solid rgba(255, 255, 255, 0.9); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18); }
 .swatch.is-active { box-shadow: 0 0 0 2px var(--ink); }
 
-.buy-row { display: flex; gap: 12px; align-items: stretch; }
+.order-choice { display: grid; gap: 10px; padding: 18px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.35); border: 1px solid var(--glass-border); }
+.order-choice-title { font-weight: 700; font-size: 0.95rem; }
+.stepper-lg { justify-self: start; }
 .stepper { display: inline-flex; align-items: center; border-radius: 999px; background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border); }
 .stepper button { width: 40px; height: 44px; background: none; border: 0; font-size: 1.2rem; cursor: pointer; border-radius: 999px; }
 .stepper button:hover { background: rgba(255, 255, 255, 0.9); }
@@ -330,7 +332,6 @@ h1.display { font-size: clamp(2rem, 4.5vw, 3rem); }
   .cart-line { grid-template-columns: 72px 1fr; }
   .cart-line .stepper { grid-column: 2; justify-self: start; }
   .cart-line .line-total { grid-column: 2; text-align: left; }
-  .buy-row { flex-wrap: wrap; }
   .hc-3 { display: none; }
   .search { width: 100%; }
   .search input { flex: 1; min-width: 0; }

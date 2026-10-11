@@ -5,7 +5,7 @@ import { useCart } from "./CartProvider";
 import ProductVisual from "./ProductVisual";
 import { getProduct } from "@/lib/products";
 import { deliveryFor, naira, FREE_DELIVERY_OVER } from "@/lib/config";
-import { whatsappEnabled, whatsappLink } from "@/lib/whatsapp";
+import { whatsappEnabled, whatsappLink, WHATSAPP_SLOW_NOTE } from "@/lib/whatsapp";
 
 export default function CartView() {
   const { lines, ready, subtotal, setQty, remove } = useCart();
@@ -84,15 +84,19 @@ export default function CartView() {
         {FREE_DELIVERY_OVER > 0 && delivery > 0 && (
           <p className="notice">Add {naira(FREE_DELIVERY_OVER - subtotal)} more for free delivery.</p>
         )}
+        <p className="order-choice-title">How would you like to order?</p>
         <Link href="/checkout" className="btn btn-primary btn-block">
-          Pay securely online
+          Order online
         </Link>
+        <p className="muted small">Pay by card, transfer or USSD through Paystack. Confirmed instantly.</p>
         {whatsappEnabled && (
-          <a className="btn btn-ghost btn-block" href={whatsappLink(waMessage)} target="_blank" rel="noopener noreferrer">
-            Order on WhatsApp instead
-          </a>
+          <>
+            <a className="btn btn-ghost btn-block" href={whatsappLink(waMessage)} target="_blank" rel="noopener noreferrer">
+              Order on WhatsApp
+            </a>
+            <p className="muted small">{WHATSAPP_SLOW_NOTE}</p>
+          </>
         )}
-        <p className="muted small">Pay by card, bank transfer or USSD through Paystack.</p>
       </aside>
     </div>
   );

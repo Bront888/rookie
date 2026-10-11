@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCart, lineKey } from "./CartProvider";
 import ProductVisual from "./ProductVisual";
 import { naira } from "@/lib/config";
 import { unitPriceFor, type Product } from "@/lib/products";
-import { whatsappEnabled, whatsappLink } from "@/lib/whatsapp";
+import { whatsappEnabled, whatsappLink, WHATSAPP_SLOW_NOTE } from "@/lib/whatsapp";
 
 export default function ProductPurchase({ product }: { product: Product }) {
+  const router = useRouter();
   const { add } = useCart();
   const [size, setSize] = useState<string | null>(product.sizes?.[0]?.label ?? null);
   const [color, setColor] = useState<string | null>(product.colors?.[0]?.name ?? null);
@@ -18,7 +19,7 @@ export default function ProductPurchase({ product }: { product: Product }) {
   const unitPrice = unitPriceFor(product, size) ?? product.price;
   const selectedColor = product.colors?.find((c) => c.name === color);
 
-  function addToCart() {
+  function addLine() {
     add({
       key: lineKey(product.slug, size, color),
       slug: product.slug,
@@ -28,8 +29,17 @@ export default function ProductPurchase({ product }: { product: Product }) {
       unitPrice,
       qty,
     });
+  }
+
+  function addToCart() {
+    addLine();
     setAdded(true);
     window.setTimeout(() => setAdded(false), 2200);
+  }
+
+  function orderOnline() {
+    addLine();
+    router.push("/checkout");
   }
 
   const waMessage = [
@@ -96,28 +106,33 @@ export default function ProductPurchase({ product }: { product: Product }) {
           </fieldset>
         )}
 
-        <div className="buy-row">
-          <div className="stepper" role="group" aria-label="Quantity">
-            <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity">−</button>
-            <span aria-live="polite">{qty}</span>
-            <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Increase quantity">+</button>
-          </div>
-          <button type="button" className="btn btn-primary btn-grow" onClick={addToCart}>
-            {added ? "Added to cart ✓" : `Add to cart · ${naira(unitPrice * qty)}`}
-          </button>
+        <div className="stepper stepper-lg" role="group" aria-label="Quantity">
+          <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity">−</button>
+          <span aria-live="polite">{qty}</span>
+          <button type="button" onClick={() => setQty((q) => Math.min(20, q + 1))} aria-label="Increase quantity">+</button>
         </div>
 
-        {added && (
-          <p className="notice">
-            <Link href="/cart">View cart →</Link>
-          </p>
-        )}
+        <div className="order-choice">
+          <p className="order-choice-title">How would you like to order?</p>
 
-        {whatsappEnabled && (
-          <a className="btn btn-ghost btn-block" href={whatsappLink(waMessage)} target="_blank" rel="noopener noreferrer">
-            Prefer to chat? Order on WhatsApp
-          </a>
-        )}
+          <button type="button" className="btn btn-primary btn-block" onClick={orderOnline}>
+            Order online · {naira(unitPrice * qty)}
+          </button>
+          <p className="muted small">Pay by card, transfer or USSD. Confirmed instantly.</p>
+
+          {whatsappEnabled && (
+            <>
+              <a className="btn btn-ghost btn-block" href={whatsappLink(waMessage)} target="_blank" rel="noopener noreferrer">
+                Order on WhatsApp
+              </a>
+              <p className="muted small">{WHATSAPP_SLOW_NOTE}</p>
+            </>
+          )}
+
+          <button type="button" className="link-btn" onClick={addToCart}>
+            {added ? "Added to cart ✓ (see Cart above)" : "Or add to cart and keep shopping"}
+          </button>
+        </div>
 
         <ul className="detail-list">
           {product.details.map((d) => (
