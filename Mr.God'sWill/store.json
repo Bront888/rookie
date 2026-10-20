@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Chinedu",
+        "issue": "my network connection is down",
+        "detail": "no for now",
+        "solution": "**Network Connection Down \u2013 Structured Troubleshooting Guide**\n\nSince you haven\u2019t provided details about your setup, I\u2019ll assume a typical home/small-office scenario: a device (PC, laptop, phone) connected via Wi-Fi or Ethernet to a router/modem (possibly a combined gateway) that links to your ISP. Adjust steps if your topology differs (e.g., mesh, enterprise, mobile hotspot).\n\n---\n\n### **Phase 1 \u2013 Quick Checks (30 seconds)**\n1. **Confirm the symptom**  \n   - Open a browser and try `http://neverssl.com` (avoids HTTPS redirects).  \n   - Run `ping 1.1.1.1` (or `ping 8.8.8.8`) from a terminal/command prompt.  \n   - **Result interpretation**:  \n     - *No DNS but ping works* \u2192 DNS issue.  \n     - *Ping fails* \u2192 Layer 1\u20133 problem.  \n     - *Only some sites fail* \u2192 Possible routing/firewall/CDN issue.\n\n2. **Check other devices**  \n   - Test a phone, tablet, or another computer on the same network.  \n   - **If others work** \u2192 Problem is isolated to the original device (skip to Phase 3).  \n   - **If all fail** \u2192 Proceed to Phase 2.\n\n---\n\n### **Phase 2 \u2013 Local Network & Hardware (2\u20135 minutes)**\n3. **Physical layer**  \n   - **Ethernet**: Verify cable seated at both ends; try a known-good cable/port.  \n   - **Wi-Fi**: Ensure you\u2019re on the correct SSID; toggle Wi-Fi off/on; move closer to AP.\n\n4. **Router/Modem power cycle (low risk, high yield)**  \n   - Unplug **both** modem and router (or gateway) from power.  \n   - Wait 60 seconds.  \n   - Plug in modem \u2192 wait for solid \u201conline\u201d light \u2192 plug in router \u2192 wait 2 min.  \n   - **Verify**: Re-run Phase 1 tests.\n\n5. **Router status lights**  \n   - Note which LEDs are on/off/blinking (WAN, Internet, LAN, Wi-Fi).  \n   - Consult the vendor\u2019s light-guide (often on the device label or support site).\n\n6. **Check for ISP outage**  \n   - Visit your ISP\u2019s status page on cellular data, or check Downdetector/Twitter.  \n   - Call support if needed; they can see sync status on their side.\n\n---\n\n### **Phase 3 \u2013 Single-Device Diagnosis (if others work)**\n7. **IP configuration**  \n   - Windows: `ipconfig",
+        "notes": []
+    },
+    {
+        "name": "Chinedu",
+        "issue": "My keyboard is not functioning",
+        "detail": "no for now",
+        "solution": "Since you haven\u2019t provided specifics, I\u2019m making the following assumptions so I can give you useful steps right away:\n\n- You are using a desktop or laptop computer.\n- You have some way to navigate the computer right now (on-screen keyboard, touchscreen, mouse, or a second keyboard).\n- The keyboard stopped working suddenly or after a specific event (update, spill, drop, etc.).\n\n---\n\n### Likely causes\n\n| Category | Common causes |\n|----------|---------------|\n| **Connection / power**",
+        "notes": []
+    }
+]
